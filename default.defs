@@ -1,0 +1,11 @@
+_buck_java_library = java_library
+def java_library(*args, **kwargs):
+  _munge_args(kwargs)
+  _buck_java_library(*args, **kwargs)
+
+def _munge_args(kwargs):
+  _set_errot_prone(kwargs)
+
+def _set_errot_prone(kwargs):
+  kwargs['javac_jar'] = '//:errorprone'
+  kwargs['compiler_class_name'] = 'com.google.errorprone.ErrorProneJavaCompiler'
